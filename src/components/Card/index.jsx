@@ -6,9 +6,8 @@ import BoardContext from '../Board/context';
 
 
 const Card = ({ data, index, listIndex }) => {
-    const { move } = useContext(BoardContext);
-
     const ref = useRef();
+    const { move } = useContext(BoardContext);
 
     const [{ isDragging }, dragRef] = useDrag({
         type: 'CARD',
@@ -22,12 +21,12 @@ const Card = ({ data, index, listIndex }) => {
         accept: 'CARD',
         hover(item, monitor) {
             const draggedListIndex = item.listIndex;
-            //const targetListIndex = listIndex;
+            const targetListIndex = listIndex;
 
             const draggetIndex = item.index;
             const targetIndex = index;
 
-            if (draggetIndex === targetIndex) {
+            if (draggetIndex === targetIndex && draggedListIndex === targetListIndex) {
                 return;
             }
 
@@ -47,9 +46,10 @@ const Card = ({ data, index, listIndex }) => {
                 return;
             }
 
-            move(draggedListIndex, draggetIndex, targetIndex);
+            move(draggedListIndex, targetListIndex, draggetIndex, targetIndex);
 
             item.index = targetIndex;
+            item.targetIndex = targetListIndex;
         }
     })
 
