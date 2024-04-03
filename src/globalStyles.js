@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-size: 14px;
         font-family: 'Roboto', sans-serif;
-        color: #ECF1F8;
+        background-color: #ECF1F8;
         color: #333;
         --webkit-font-smoothing: antialiased !important;
     }
